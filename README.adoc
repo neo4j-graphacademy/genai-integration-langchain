@@ -1,0 +1,3 @@
+= Using Neo4j with LangChain
+
+This repository accompanies the link:https://graphacademy.neo4j.com/courses/genai-integration-langchain/[Using Neo4j with LangChain course^] on link:https://graphacademy.neo4j.com[GraphAcademy^].
