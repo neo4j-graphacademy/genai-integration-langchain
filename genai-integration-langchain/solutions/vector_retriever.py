@@ -7,12 +7,15 @@ from langchain.chat_models import init_chat_model
 from langgraph.graph import START, StateGraph
 from langchain_core.prompts import PromptTemplate
 from typing_extensions import List, TypedDict
+# tag::import_neo4jgraph[]
+from langchain_neo4j import Neo4jGraph
+# end::import_neo4jgraph[]
+# tag::import_neo4jvector[]
+from langchain_neo4j import Neo4jVector
+# end::import_neo4jvector[]
 # tag::import_embedding_model[]
 from langchain_openai import OpenAIEmbeddings
 # end::import_embedding_model[]
-# tag::import_neo4j[]
-from langchain_neo4j import Neo4jGraph, Neo4jVector
-# end::import_neo4j[]
 
 # Initialize the LLM
 model = init_chat_model("gpt-4o", model_provider="openai")
@@ -30,15 +33,12 @@ Answer:"""
 prompt = PromptTemplate.from_template(template)
 
 # Define state for application
+# tag::state[]
 class State(TypedDict):
     question: str
     context: List[Document]
     answer: str
-
-# tag::embedding_model[]
-# Create the embedding model
-embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
-# end::embedding_model[]
+# end::state[]
 
 # tag::graph[]
 # Connect to Neo4j
@@ -48,6 +48,11 @@ graph = Neo4jGraph(
     password=os.getenv("NEO4J_PASSWORD"),
 )
 # end::graph[]
+
+# tag::embedding_model[]
+# Create the embedding model
+embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
+# end::embedding_model[]
 
 # tag::plot_vector[]
 # Create Vector
@@ -62,16 +67,16 @@ plot_vector = Neo4jVector.from_existing_index(
 
 # Define functions for each step in the application
 
-# tag::retrieve_docs[]
+# tag::retrieve[]
 # Retrieve context 
 def retrieve(state: State):
     # Use the vector to find relevant documents
     context = plot_vector.similarity_search(
         state["question"], 
-        k=6,
-        # filter={"revenue": {"$lte": 2000000}}
+        k=6
     )
     return {"context": context}
+# tag::retrieve[]
 
 # Generate the answer based on the question and context
 def generate(state: State):
@@ -86,6 +91,7 @@ app = workflow.compile()
 
 # Run the application
 question = "What is the movie with the pig who wants to be a sheep dog?"
+question = "What are some movies about fast cars?"
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])
 # tag::print_context[]
@@ -95,6 +101,7 @@ print("Context:", response["context"])
 
 
 # tag::examples[]
-# What is the movie with the pig who wants to be a sheep dog?
+# What are some movies about fast cars?
 # What are 3 movies about aliens coming to earth?
+# What is a typical budget for a romance movie?
 # end::examples[]

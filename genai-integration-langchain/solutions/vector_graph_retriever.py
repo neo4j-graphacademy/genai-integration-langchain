@@ -31,15 +31,15 @@ class State(TypedDict):
     context: List[Document]
     answer: str
 
-# Create the embedding model
-embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
-
 # Connect to Neo4j
 graph = Neo4jGraph(
     url=os.getenv("NEO4J_URI"),
     username=os.getenv("NEO4J_USERNAME"), 
     password=os.getenv("NEO4J_PASSWORD"),
 )
+
+# Create the embedding model
+embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
 
 # tag::retrieval_query[]
 # Define the retrieval query
@@ -104,5 +104,5 @@ print("Context:", response["context"])
 
 # tag::examples[]
 # What are top user rated movies about a house haunted by ghosts?
-# Who has acted in movies about love and romance?
+# What movies genres relate to movies about betrayal?
 # end::examples[]

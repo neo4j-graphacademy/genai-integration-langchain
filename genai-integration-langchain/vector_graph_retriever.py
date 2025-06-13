@@ -31,9 +31,6 @@ class State(TypedDict):
     context: List[Document]
     answer: str
 
-# Create the embedding model
-embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
-
 # Connect to Neo4j
 graph = Neo4jGraph(
     url=os.getenv("NEO4J_URI"),
@@ -41,6 +38,12 @@ graph = Neo4jGraph(
     password=os.getenv("NEO4J_PASSWORD"),
 )
 # end::graph[]
+
+# Create the embedding model
+embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
+
+# Define the retrieval query
+# retrieval_query = 
 
 # Create Vector
 plot_vector = Neo4jVector.from_existing_index(

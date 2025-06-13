@@ -29,11 +29,14 @@ class State(TypedDict):
     context: List[Document]
     answer: str
 
-# Create the embedding model
-
 # Connect to Neo4j
+# graph = 
+
+# Create the embedding model
+# embedding_model = 
 
 # Create Vector
+# plot_vector =
 
 # Define functions for each step in the application
 
@@ -55,6 +58,6 @@ workflow.add_edge(START, "retrieve")
 app = workflow.compile()
 
 # Run the application
-question = "What are 3 movies about aliens coming to earth?"
+question = "What is the movie with the pig who wants to be a sheep dog?"
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])

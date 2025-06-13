@@ -65,7 +65,7 @@ question = "How is the graph structured?"
 # end::question[]
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])
-# print("Context:", response["context"])
+
 
 
 

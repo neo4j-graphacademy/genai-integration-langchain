@@ -35,7 +35,7 @@ plot_vector = Neo4jVector.from_existing_index(
 
 # tag::search[]
 # Search for similar movie plots
-plot = "Love conquers all"
+plot = "Toys come alive"
 result = plot_vector.similarity_search(plot, k=3)
 print(result)
 # end::search[]
@@ -50,7 +50,7 @@ for doc in result:
 
 
 # tag::examples[]
-# Toys come alive
 # Love conquers all
 # Aliens invade Earth
+# A detective solves a mystery
 # end::examples[]
