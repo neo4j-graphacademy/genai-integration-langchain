@@ -33,9 +33,9 @@ cypher_qa = GraphCypherQAChain.from_llm(
 
 # tag::invoke[]
 # Invoke the chain
-question = "What year was the movie Babe released?"
+question = "How many movies are in the Sci-Fi genre?"
 response = cypher_qa.invoke({"query": question})
-print(response)
+print(response["result"])
 # end::invoke[]
 
 
@@ -45,4 +45,5 @@ print(response)
 # Who acted in the movie Aliens?
 # Who directed the movie Superman?
 # What is the plot of the movie Toy Story?
+# How many movies are in the Sci-Fi genre?
 # end::examples[]
