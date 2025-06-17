@@ -56,9 +56,9 @@ workflow.add_edge(START, "retrieve")
 app = workflow.compile()
 # end::application_workflow[]
 
-# tag::run_application[]
+# tag::invoke[]
 # Run the application
 question = "What is the weather in San Francisco?"
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])
-# end::run_application[]
+# end::invoke[]
