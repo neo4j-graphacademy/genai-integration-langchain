@@ -61,7 +61,7 @@ workflow.add_edge(START, "retrieve")
 app = workflow.compile()
 
 # Run the application
-question = "Can you recommend a Horror movie for me to watch?"
+question = "What movies has Tom Hanks acted in?"
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])
 print("Context:", response["context"])

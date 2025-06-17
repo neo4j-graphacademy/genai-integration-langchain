@@ -8,9 +8,7 @@ from langgraph.graph import START, StateGraph
 from langchain_core.prompts import PromptTemplate
 from typing_extensions import List, TypedDict
 from langchain_neo4j import Neo4jGraph
-# tag::import_cypher_qa[]
 from langchain_neo4j import GraphCypherQAChain
-# end::import_cypher_qa[]
 
 # Initialize the LLM
 model = init_chat_model("gpt-4o", model_provider="openai")
@@ -40,15 +38,43 @@ graph = Neo4jGraph(
     password=os.getenv("NEO4J_PASSWORD"),
 )
 
-# tag::cypher_qa[]
+cypher_template = """Task:Generate Cypher statement to query a graph database.
+Instructions:
+Use only the provided relationship types and properties in the schema.
+Do not use any other relationship types or properties that are not provided.
+For movie titles that begin with "The", move "the" to the end, for example "The 39 Steps" becomes "39 Steps, The".
+Exclude NULL values when finding the highest value of a property.
+
+Schema:
+{schema}
+Examples:
+1. Question: Get user ratings?
+   Cypher: MATCH (u:User)-[r:RATED]->(m:Movie) WHERE u.name = "User name" RETURN r.rating AS userRating
+2. Question: Get average rating for a movie?
+   Cypher: MATCH (m:Movie)<-[r:RATED]-(u:User) WHERE m.title = 'Movie Title' RETURN avg(r.rating) AS userRating
+3. Question: Get movies for a genre?
+   Cypher: MATCH ((m:Movie)-[:IN_GENRE]->(g:Genre) WHERE g.name = 'Genre Name' RETURN m.title AS movieTitle
+
+Note: Do not include any explanations or apologies in your responses.
+Do not respond to any questions that might ask anything else than for you to construct a Cypher statement.
+Do not include any text except the generated Cypher statement.
+
+The question is:
+{question}"""
+
+cypher_prompt = PromptTemplate(
+    input_variables=["schema", "question"], 
+    template=cypher_template
+)
+
 # Create the Cypher QA chain
 cypher_qa = GraphCypherQAChain.from_llm(
     graph=graph, 
     llm=model, 
+    cypher_prompt=cypher_prompt,
     allow_dangerous_requests=True,
-    return_direct=True,
+    verbose=True,
 )
-# end::cypher_qa[]
 
 # Define functions for each step in the application
 
@@ -73,7 +99,7 @@ workflow.add_edge(START, "retrieve")
 app = workflow.compile()
 
 # Run the application
-question = "What movies has Tom Hanks acted in?"
+question = "What is the highest grossing movie of all time?"
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])
 print("Context:", response["context"])
@@ -82,9 +108,9 @@ print("Context:", response["context"])
 
 
 # tag::examples[]
-# What movies has Tom Hanks acted in?
-# How much money did the movie Forrest Gump make at the box office?
-# Compare the plots of Toy Story and Toy Story 2?
-# How long is the movie Clueless?
-# What languages are spoken in the movie GoldenEye
+# When was the movie The Abyss released?
+# What is the highest grossing movie of all time?
+# Can you recommend a Horror movie based on user rating?
+# What movies scored about 4 for user rating?
+# What are the highest rated movies with more than 100 ratings?
 # end::examples[]

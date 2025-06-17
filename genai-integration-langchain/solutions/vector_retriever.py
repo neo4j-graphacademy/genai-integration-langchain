@@ -101,6 +101,7 @@ print("Context:", response["context"])
 
 
 # tag::examples[]
+# What is the movie with the pig who wants to be a sheep dog?
 # What are some movies about fast cars?
 # What are 3 movies about aliens coming to earth?
 # What is a typical budget for a romance movie?

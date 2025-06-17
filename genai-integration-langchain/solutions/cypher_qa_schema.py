@@ -43,7 +43,7 @@ cypher_qa = GraphCypherQAChain.from_llm(
 
 # tag::invoke[]
 # Invoke the chain
-question = "How many movies are in the Sci-Fi genre?"
+question = "Who acted in the movie Aliens?"
 response = cypher_qa.invoke({"query": question})
 print(response["result"])
 # end::invoke[]

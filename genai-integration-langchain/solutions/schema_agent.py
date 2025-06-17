@@ -70,6 +70,7 @@ print("Answer:", response["answer"])
 
 
 # tag::examples[]
+# How is the graph structured?
 # How are Movie nodes connected to Person nodes?
 # What relationships are in the graph?
 # What properties do Movie nodes have?

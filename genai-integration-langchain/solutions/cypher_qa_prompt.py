@@ -89,7 +89,7 @@ The question is:
 
 # tag::cypher_template_example_genre[]
 # Cypher template with examples
-cypher_template2 = """Task:Generate Cypher statement to query a graph database.
+cypher_template = """Task:Generate Cypher statement to query a graph database.
 Instructions:
 Use only the provided relationship types and properties in the schema.
 Do not use any other relationship types or properties that are not provided.
@@ -102,7 +102,7 @@ Examples:
    Cypher: MATCH (u:User)-[r:RATED]->(m:Movie) WHERE u.name = "User name" RETURN r.rating AS userRating
 2. Question: Get average rating for a movie?
    Cypher: MATCH (m:Movie)<-[r:RATED]-(u:User) WHERE m.title = 'Movie Title' RETURN avg(r.rating) AS userRating
-2. Question: Get movies for a genre?
+3. Question: Get movies for a genre?
    Cypher: MATCH ((m:Movie)-[:IN_GENRE]->(g:Genre) WHERE g.name = 'Genre Name' RETURN m.title AS movieTitle
 
 Note: Do not include any explanations or apologies in your responses.
@@ -131,7 +131,7 @@ cypher_qa = GraphCypherQAChain.from_llm(
 )
 # end::cypher_qa[]
 
-question = "How many Sci-Fi movies has Tom Hanks acted in?"
+question = "Who directed the movie The Matrix?"
 response = cypher_qa.invoke({"query": question})
 print(response["result"])
 
@@ -149,4 +149,5 @@ print(response["result"])
 
 # tag::examples_genre[]
 # What is the highest user rated movie in the Horror genre?
+# How many Sci-Fi movies has Tom Hanks acted in?
 # end::examples_genre[]
