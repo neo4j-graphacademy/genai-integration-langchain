@@ -35,7 +35,9 @@ class State(TypedDict):
 
 # Retrieve context 
 def retrieve(state: State):
-    context = [{"data": "Nothing"}]
+    context = [
+        {"data": "None"}
+    ]
     return {"context": context}
 
 # Generate the answer based on the question and context
