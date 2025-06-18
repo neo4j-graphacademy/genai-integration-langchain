@@ -94,7 +94,7 @@ workflow.add_edge(START, "retrieve")
 app = workflow.compile()
 
 # Run the application
-question = "What are top user rated movies about a house haunted by ghosts?"
+question = "Who acts in movies about Love and Romance?"
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])
 print("Context:", response["context"])
@@ -103,6 +103,7 @@ print("Context:", response["context"])
 
 
 """ tag::examples[]
+* Who acts in movies about Love and Romance?
 * What are top user rated movies about a house haunted by ghosts?
 * What movies genres relate to movies about betrayal?
 end::examples[] """

@@ -25,7 +25,7 @@ graph = Neo4jGraph(
     password=os.getenv("NEO4J_PASSWORD"),
 )
 
-# tag::cypher_qa
+# tag::cypher_qa[]
 cypher_qa = GraphCypherQAChain.from_llm(
     graph=graph, 
     llm=model, 
@@ -33,7 +33,7 @@ cypher_qa = GraphCypherQAChain.from_llm(
     allow_dangerous_requests=True,
     verbose=True,
 )
-# end::cypher_qa
+# end::cypher_qa[]
 
 question = "Who acted in the movie Aliens?"
 response = cypher_qa.invoke({"query": question})
