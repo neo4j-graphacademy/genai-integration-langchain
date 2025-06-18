@@ -106,12 +106,10 @@ print("Context:", response["context"])
 
 
 
-"""
-tag::examples[]
-When was the movie The Abyss released?
-What is the highest grossing movie of all time?
-Can you recommend a Horror movie based on user rating?
-What movies scored about 4 for user rating?
-What are the highest rated movies with more than 100 ratings?
-end::examples[]
-"""
+""" tag::examples[]
+* When was the movie The Abyss released?
+* What is the highest grossing movie of all time?
+* Can you recommend a Horror movie based on user rating?
+* What movies scored about 4 for user rating?
+* What are the highest rated movies with more than 100 ratings?
+end::examples[] """

@@ -49,9 +49,9 @@ for doc in result:
 
 
 
-# tag::examples[]
-# Toys come alive
-# Love conquers all
-# Aliens invade Earth
-# A detective solves a mystery
-# end::examples[]
+""" tag::examples[]
+* Toys come alive
+* Love conquers all
+* Aliens invade Earth
+* A detective solves a mystery
+end::examples[] """

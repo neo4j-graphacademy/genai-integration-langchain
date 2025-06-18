@@ -81,10 +81,10 @@ print("Context:", response["context"])
 
 
 
-# tag::examples[]
-# What movies has Tom Hanks acted in?
-# How much money did the movie Forrest Gump make at the box office?
-# Compare the plots of Toy Story and Toy Story 2?
-# How long is the movie Clueless?
-# What languages are spoken in the movie GoldenEye
-# end::examples[]
+""" tag::examples[]
+* What movies has Tom Hanks acted in?
+* How much money did the movie Forrest Gump make at the box office?
+* Compare the plots of Toy Story and Toy Story 2?
+* How long is the movie Clueless?
+* What languages are spoken in the movie GoldenEye
+end::examples[] """

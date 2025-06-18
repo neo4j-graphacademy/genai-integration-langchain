@@ -102,7 +102,7 @@ print("Context:", response["context"])
 
 
 
-# tag::examples[]
-# What are top user rated movies about a house haunted by ghosts?
-# What movies genres relate to movies about betrayal?
-# end::examples[]
+""" tag::examples[]
+* What are top user rated movies about a house haunted by ghosts?
+* What movies genres relate to movies about betrayal?
+end::examples[] """
