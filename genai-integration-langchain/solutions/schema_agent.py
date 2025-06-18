@@ -11,6 +11,7 @@ from langchain_neo4j import Neo4jGraph
 # end::import_neo4jgraph[]
 
 # tag::neo4jgraph[]
+# Connect to Neo4j
 graph = Neo4jGraph(
     url=os.getenv("NEO4J_URI"),
     username=os.getenv("NEO4J_USERNAME"), 
@@ -36,7 +37,7 @@ prompt = PromptTemplate.from_template(template)
 # Define state for application
 class State(TypedDict):
     question: str
-    context: dict
+    context: List[dict]
     answer: str
 
 # Define functions for each step in the application
@@ -44,7 +45,7 @@ class State(TypedDict):
 # tag::retrieve[]
 # Retrieve context 
 def retrieve(state: State):
-    context = graph.query("call db.schema.visualization()")
+    context = graph.query("CALL db.schema.visualization()")
     return {"context": context}
 # end::retrieve[]
 

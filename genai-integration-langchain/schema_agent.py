@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -6,7 +7,9 @@ from langgraph.graph import START, StateGraph
 from langchain_core.prompts import PromptTemplate
 from typing_extensions import List, TypedDict
 
-# tag::llm_prompt[]
+# Connect to Neo4j
+# graph = 
+
 # Initialize the LLM
 model = init_chat_model("gpt-4o", model_provider="openai")
 
@@ -21,25 +24,18 @@ Question: {question}
 Answer:"""
 
 prompt = PromptTemplate.from_template(template)
-# end::llm_prompt[]
 
-# tag::application_state[]
 # Define state for application
 class State(TypedDict):
     question: str
     context: List[dict]
     answer: str
-# end::application_state[]
 
-# tag::application_functions[]
 # Define functions for each step in the application
 
 # Retrieve context 
 def retrieve(state: State):
-    context = [
-        {"location": "London", "weather": "Cloudy, sunny skies later"},
-        {"location": "San Francisco", "weather": "Sunny skies, raining overnight."},
-    ]
+    context = [{"data": "Nothing"}]
     return {"context": context}
 
 # Generate the answer based on the question and context
@@ -47,18 +43,13 @@ def generate(state: State):
     messages = prompt.invoke({"question": state["question"], "context": state["context"]})
     response = model.invoke(messages)
     return {"answer": response.content}
-# end::application_functions[]
 
-# tag::application_workflow[]
 # Define application steps
 workflow = StateGraph(State).add_sequence([retrieve, generate])
 workflow.add_edge(START, "retrieve")
 app = workflow.compile()
-# end::application_workflow[]
 
-# tag::invoke[]
 # Run the application
-question = "What is the weather in San Francisco?"
+question = "What data is in the context?"
 response = app.invoke({"question": question})
 print("Answer:", response["answer"])
-# end::invoke[]

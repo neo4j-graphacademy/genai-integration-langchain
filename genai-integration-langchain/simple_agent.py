@@ -24,17 +24,17 @@ prompt = PromptTemplate.from_template(template)
 # Define state for application
 class State(TypedDict):
     question: str
-    context: dict
+    context: List[dict]
     answer: str
 
 # Define functions for each step in the application
 
 # Retrieve context 
 def retrieve(state: State):
-    context = {
-        "London": "Cloudy, sunny skies later in the day.",
-        "San Francisco": "Sunny skies, raining overnight.",
-    }
+    context = [
+        {"location": "London", "weather": "Cloudy, sunny skies later"},
+        {"location": "San Francisco", "weather": "Sunny skies, raining overnight."},
+    ]
     return {"context": context}
 
 # Generate the answer based on the question and context
