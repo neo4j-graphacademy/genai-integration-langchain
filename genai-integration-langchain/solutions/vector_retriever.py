@@ -76,7 +76,7 @@ def retrieve(state: State):
         k=6
     )
     return {"context": context}
-# tag::retrieve[]
+# end::retrieve[]
 
 # Generate the answer based on the question and context
 def generate(state: State):

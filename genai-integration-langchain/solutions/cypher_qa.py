@@ -40,10 +40,11 @@ print(response["result"])
 
 
 
-
-# tag::examples[]
-# Who acted in the movie Aliens?
-# Who directed the movie Superman?
-# What is the plot of the movie Toy Story?
-# How many movies are in the Sci-Fi genre?
-# end::examples[]
+"""
+tag::examples[]
+Who acted in the movie Aliens?
+Who directed the movie Superman?
+What is the plot of the movie Toy Story?
+How many movies are in the Sci-Fi genre?
+end::examples[]
+"""

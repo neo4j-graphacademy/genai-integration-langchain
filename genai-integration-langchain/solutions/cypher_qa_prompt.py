@@ -137,17 +137,18 @@ print(response["result"])
 
 
 
+"""
+tag::examples_the[]
+Who directed the movie The Matrix?
+end::examples_the[]
 
-# tag::examples_the[]
-# Who directed the movie The Matrix?
-# end::examples_the[]
+tag::examples_rating[]
+What is the highest rating for Goodfellas?
+What is the average user rating for the movie Toy Story?
+end::examples_rating[]
 
-# tag::examples_rating[]
-# What is the highest rating for Goodfellas?
-# What is the average user rating for the movie Toy Story?
-# end::examples_rating[]
-
-# tag::examples_genre[]
-# What is the highest user rated movie in the Horror genre?
-# How many Sci-Fi movies has Tom Hanks acted in?
-# end::examples_genre[]
+tag::examples_genre[]
+What is the highest user rated movie in the Horror genre?
+How many Sci-Fi movies has Tom Hanks acted in?
+end::examples_genre[]
+"""

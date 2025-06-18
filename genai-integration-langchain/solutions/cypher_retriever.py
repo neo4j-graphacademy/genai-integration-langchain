@@ -59,7 +59,7 @@ def retrieve(state: State):
         {"query": state["question"]}
     )
     return {"context": context}
-# tag::retrieve[]
+# end::retrieve[]
 
 # Generate the answer based on the question and context
 def generate(state: State):
