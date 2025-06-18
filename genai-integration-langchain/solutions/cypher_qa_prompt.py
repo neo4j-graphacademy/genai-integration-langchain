@@ -131,7 +131,7 @@ cypher_qa = GraphCypherQAChain.from_llm(
 )
 # end::cypher_qa[]
 
-question = "Who directed the movie The Matrix?"
+question = "What was the release date of the movie The 39 Steps?"
 response = cypher_qa.invoke({"query": question})
 print(response["result"])
 
@@ -139,6 +139,7 @@ print(response["result"])
 
 """
 tag::examples_the[]
+What was the release date of the movie The 39 Steps?
 Who directed the movie The Matrix?
 end::examples_the[]
 
