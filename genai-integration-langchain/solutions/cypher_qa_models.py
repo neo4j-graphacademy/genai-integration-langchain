@@ -11,13 +11,13 @@ model = init_chat_model(
     model_provider="openai"
 )
 
-# tag::cypher_model
+# tag::cypher_model[]
 cypher_model = init_chat_model(
-    "gpt-4o-mini", 
+    "gpt-4o", 
     model_provider="openai",
     temperature=0.0
 )
-# end::cypher_model
+# end::cypher_model[]
 
 graph = Neo4jGraph(
     url=os.getenv("NEO4J_URI"),
