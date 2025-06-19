@@ -1,3 +1,27 @@
 = Using Neo4j with LangChain
 
 This repository accompanies the link:https://graphacademy.neo4j.com/courses/genai-integration-langchain/[Using Neo4j with LangChain course^] on link:https://graphacademy.neo4j.com[GraphAcademy^].
+
+For a complete walkthrough of this repository, https://graphacademy.neo4j.com/courses/genai-integration-langchain/[enrol now^].
+
+link:https://codespaces.new/neo4j-graphacademy/genai-integration-langchain[image:https://github.com/codespaces/badge.svg[Open in GitHub Codespaces]^]
+
+== Tests
+
+To run the solution tests: 
+
+. Create Neo4j instance with the `recommendations` dataset
+. Run the link:../reset.cypher[Cypher to add embeddings and create the vector index^].
+. Create a virtual environment and install the requirements.
++ 
+[source,sh]
+pip install -r requirements.txt
+. Install `pytest`
++
+[source,sh]
+pip install pytest
+. Create a `.env` file in the root directory. Use `.env.example` as a template.
+. Run the tests
++
+[source,sh]
+pytest
